@@ -1,0 +1,34 @@
+<div id="campaignPanel" class="panel">
+    <h1>${title}</h1>
+    <div class="subTitulo" id="campanhaAddress">${campanhaAddress}</div>
+    <div class="form-group">
+      <div class="column">
+        <img id="previewImage2" src="image_not_uploaded.jpg" alt="Imagem da Campanha">
+      </div>
+      <div class="column">
+        <label class="labelBold">Valor arrecadado:</label>
+        <div class="field" id="currentValue">${totalBalance} ETH</div>
+        <label class="labelBold">Apoiadores:</label>
+        <div class="field" id="supporters">${numApoiadores}</div>
+      </div>
+      <div class="column">
+        <label class="labelBold">Objetivo:</label>
+        <div class="field" id="goal">${goal} ETH</div>
+        <label class="labelBold">Criação:</label>
+        <div class="field" id="creationDate">${timestamp}</div>
+      </div>
+      <div class="column">
+        <label class="labelBold">Descrição:</label>
+        <div class="field" id="description">${description}</div>
+      </div>
+      <div class="column">
+        <label class="labelBold">Colabore com essa campanha:</label>
+        <input type="text" id="donationValue" class="donation-input" placeholder="Insira o valor da doação (ETH)">
+        <button class="donate-button" id="donateButton">Doar</button>
+      </div>
+    </div>
+    <div class="donation-list" id="donationList">
+      <h3>Últimas Doações</h3>
+      <div class="donations">${donationList}</div>
+    </div>
+  </div>

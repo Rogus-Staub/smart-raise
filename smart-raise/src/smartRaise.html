@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='../node_modules/web3/dist/web3.min.js'></script>
+    <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
+    <title>Smart Raise</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body onload="updateScreen()">
+    <header>
+      <div>
+        <div class="contract-address">
+          <p>Contract Address</p>
+          <p id="contractAddress" class="address"></p>
+        </div>
+        <img id="logo" src="logo.png" alt="logo">
+        <button id="conectWallet" class="button1">Conectar ao MetaMask</button>
+        <div id="accountInfo" style="display: none;" class="button1"></div>
+        <div id="walletPanel" style="display: none;">
+          <h2>My wallet</h2>
+          <p>Sua carteira é usada para interagir com aplicativos e contratos no explorador.</p>
+          <button id="disconnectButton">Desconectar</button>
+        </div>
+      </div>
+      <h1 class="titulo">Smart Raise DAPP</h1>
+      <h1 class="slogan">
+        <i>Por um mundo mais solidário e descentralizado</i>
+      </h1>
+    </header>
+    <section class="section2">
+      <div id="app">
+        <h1 class="tituloForte">Campanhas Ativas</h1>
+        <div id="filterContainer">
+          <label id="filterLabel" for="filterInput">Filtrar por título:</label>
+          <input type="text" id="filterInput" placeholder="Digite o título da campanha...">
+          <button id="searchButton">Buscar</button>
+        </div>
+        <div class="card-container" id="cardContainer"></div>
+        <div id="detailsPanel">
+          <p id="projectDetails"></p>
+        </div>
+      </div>
+    </section>
+    <section class="section2">
+      <button id="bntCriarCampanha">Criar Campanha</button>
+      <button id="bntMinhasCampanhas">Minhas Campanhas</button>
+      <div id="createCampaignPanel" class="section3" style="display: none;">
+        <h2>Criar Campanha</h2>
+        <label for="titleInput">Título:</label>
+        <input type="text" id="titleInput" placeholder="Digite o título da campanha">
+        <label for="goalInput">Meta (ETH):</label>
+        <input type="text" id="goalInput" placeholder="Digite a meta de arrecadação ">
+        <label for="descricaoInput">Descrição:</label>
+        <textarea id="descricaoInput" rows="5" cols="40" placeholder="Descreva em detalhes a campanha"></textarea>
+        <button id="createButton">Cadastrar Campanha</button>
+      </div>
+      <div id="myCampaignsPanel" class="section3" style="display: none;">
+        <h2> Minhas Campanhas </h2>
+        <ul id="campaignList"></ul>
+        <div id="campaignDetails" style="display: none;">
+          <h3> Detalhes da Campanha <button id="withdrawDetailsButton" class="withdraw-button">
+              <span id="currentBalance"></span>
+            </button>
+          </h3>
+          <label for="editTitleInput">Título:</label>
+          <input type="text" id="editTitleInput">
+          <label for="editGoalInput">Meta (ETH):</label>
+          <input type="text" id="editGoalInput">
+          <label for="statusContrato">Ativo:</label>
+          <input type="checkbox" id="statusContrato">
+          <label for="editDescricaoInput">Descrição:</label>
+          <textarea id="editDescricaoInput" rows="5" cols="40"></textarea>
+          <button id="saveButton">Salvar Alterações</button>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>&copy; TCC Rogus Staub</p>
+    </footer>
+    <script src="scripts.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Document</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='../node_modules/web3/dist/web3.min.js'></script>
+  </head>
+  <body>
+    <button id="conectWallet">Conectar MetaMask</button>
+    <button id="createSmartRaise">Criar Controlador de contratos</button>
+    <script>
+      //Endereço do contrato
+      let contractAddressID;
+      //Endereço da conta externa
+      let externalAccountID;
+      //ABI do contrato
+      let abi;
+      //Contas conectadas a MetaMask
+      let accounts;
+      const web3 = new Web3(window.ethereum);
+      async function conectar() {
+        let resultado = await ethereum.request({
+          method: "eth_requestAccounts"
+        });
+        console.log(resultado);
+        accounts = await web3.eth.getAccounts();
+        console.log(accounts);
+        externalAccountID = accounts[0];
+      }
+      async function createSmartRaise() {
+        const abi = await loadABI();
+        const bytecode = await loadByteCode();
+        const contract = new web3.eth.Contract(abi);
+        const deployTx = contract.deploy({
+          data: bytecode
+        });
+        const createReceipt = await deployTx.send({
+          from: externalAccountID
+        });
+        contractAddressID = createReceipt.options.address;
+        console.log('Endereço do contrato:', createReceipt.options.address);
+      }
+      async function loadABI() {
+        const response = await fetch('../build/contracts/SmartRaise.json');
+        const abiValue = await response.json();
+        return abiValue.abi;
+      }
+      async function loadByteCode() {
+        const response = await fetch('../build/contracts/SmartRaise.json');
+        const bytecodeValue = await response.json();
+        return bytecodeValue.bytecode;
+      }
+      document.getElementById("createSmartRaise").addEventListener("click", createSmartRaise)
+      document.getElementById("conectWallet").addEventListener("click", conectar)
+    </script>
+  </body>
+</html>
